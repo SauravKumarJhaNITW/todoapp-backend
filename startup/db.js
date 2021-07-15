@@ -9,5 +9,5 @@ module.exports = async function connectDB() {
       useUnifiedTopology: true,
       useCreateIndex: true,
     })
-    .then(() => console.log(`connected to ${db}..`));
+    .then(() => console.log(`connected to db..`));
 };
