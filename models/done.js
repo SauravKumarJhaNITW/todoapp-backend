@@ -9,7 +9,7 @@ const doneSchema = new mongoose.Schema({
   },
   dateFinished: {
     type: Date,
-    default: Date.now(),
+    required: true,
   },
   userId: {
     type: mongoose.SchemaTypes.ObjectId,
@@ -23,7 +23,7 @@ function validateDone(done) {
   const schema = Joi.object({
     task: Joi.string().min(1).required(),
     userId: Joi.objectId().required(),
-    dateFinished: Joi.date(),
+    dateFinished: Joi.date().required(),
   });
 
   return schema.validate(done);

@@ -2,6 +2,7 @@ const router = require("express").Router();
 const mongoose = require("mongoose");
 const { Done, validateDone } = require("../models/done");
 const auth = require("../middleware/auth");
+const _ = require("lodash");
 
 router.get("/", auth, async (req, res) => {
   const dones = await Done.find({ userId: req.user._id }).select(

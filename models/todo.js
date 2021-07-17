@@ -9,7 +9,7 @@ const todoSchema = new mongoose.Schema({
   },
   dateCreated: {
     type: Date,
-    default: Date.now(),
+    required: true,
   },
   userId: {
     type: mongoose.SchemaTypes.ObjectId,
