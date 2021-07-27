@@ -13,6 +13,7 @@ const register = require("./routes/register");
 const error = require("./middleware/error");
 const todos = require("./routes/todos");
 const dones = require("./routes/dones");
+const home = require("./routes/home");
 Joi.objectId = require("joi-objectid")(Joi);
 
 winston.exceptions.handle(
@@ -28,6 +29,7 @@ app.use("/todos", todos);
 app.use("/dones", dones);
 app.use("/register", register);
 app.use("/login", login);
+app.use("/", home);
 // after all app.use()
 app.use(error);
 
