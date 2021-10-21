@@ -11,6 +11,10 @@ const todoSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  dueDate: {
+    type: Date,
+    required: true,
+  },
   userId: {
     type: mongoose.SchemaTypes.ObjectId,
     required: true,
@@ -24,6 +28,7 @@ function validateTodo(todo) {
     task: Joi.string().min(1).required(),
     userId: Joi.objectId().required(),
     dateCreated: Joi.date(),
+    dueDate: Joi.date(),
   });
 
   return schema.validate(todo);
