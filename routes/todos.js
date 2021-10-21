@@ -8,7 +8,7 @@ const moment = require("moment");
 
 router.get("/", auth, async (req, res) => {
   const todos = await Todo.find({ userId: req.user._id }).select(
-    "task dateCreated"
+    "task dateCreated dueDate"
   );
   res.send(todos);
 });
@@ -17,6 +17,7 @@ router.post("/", auth, async (req, res) => {
   const { error } = validateTodo({
     task: req.body.task,
     userId: req.user._id,
+    dueDate: req.body.dueDate,
   });
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -24,9 +25,10 @@ router.post("/", auth, async (req, res) => {
     task: req.body.task,
     userId: req.user._id,
     dateCreated: moment.utc(),
+    dueDate: req.body.dueDate,
   });
   await todo.save();
-  res.send(_.pick(todo, "_id", "task", "dateCreated"));
+  res.send(_.pick(todo, "_id", "task", "dateCreated", "dueDate"));
 });
 
 router.put("/delete/:_id", auth, async (req, res) => {
