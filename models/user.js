@@ -23,11 +23,29 @@ userSchema.methods.generateAuthToken = function () {
       _id: this._id,
       username: this.username,
     },
-    process.env.jwtPrivateKey
+    process.env.jwtPrivateKey,
+    {
+      algorithm: "HS256",
+      expiresIn: parseInt(process.env.jwtExpirySeconds),
+    }
   );
   return token;
 };
 
+userSchema.methods.generateAuthTokenWithLongerExpiry = function () {
+  const token = jwt.sign(
+    {
+      _id: this._id,
+      username: this.username,
+    },
+    process.env.jwtPrivateKey,
+    {
+      algorithm: "HS256",
+      expiresIn: parseInt(process.env.jwtLongerExpirySeconds),
+    }
+  );
+  return token;
+};
 const User = mongoose.model("User", userSchema);
 
 function validateUser(user) {
