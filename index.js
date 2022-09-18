@@ -14,14 +14,16 @@ const error = require("./middleware/error");
 const todos = require("./routes/todos");
 const dones = require("./routes/dones");
 const home = require("./routes/home");
+// const refresh = require("./routes/refresh");
+// const forgotPassword = require("./routes/forgot-password");
 Joi.objectId = require("joi-objectid")(Joi);
 
 winston.exceptions.handle(
-  new winston.transports.File({ filename: "uncaughtException.log" })
+    new winston.transports.File({ filename: "uncaughtException.log" })
 );
 
 process.on("unhandledRejection", (ex) => {
-  throw ex;
+    throw ex;
 });
 
 require("./startup/db")();
@@ -30,11 +32,13 @@ app.use("/dones", dones);
 app.use("/register", register);
 app.use("/login", login);
 app.use("/", home);
+// app.use("/refresh", refresh);
+// app.use("/forgot-password", forgotPassword);
 // after all app.use()
 app.use(error);
 
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
-  console.log(`listening on port ${PORT}`);
+    console.log(`listening on port ${PORT}`);
 });
