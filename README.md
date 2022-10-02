@@ -1,6 +1,7 @@
 # todoapp-backend
-This is the backend of Todo App build using NodeJs and express
-Several endpoints have been implemented in this project, which are used in to do app
+This is the backend of Todo App build using NodeJs and express.
+
+Several endpoints have been implemented in this project, which are used in todo app
 1. Register
 2. Login
 4. Add Task
