@@ -14,5 +14,6 @@ Several endpoints have been implemented in this project, which are used in todo 
 This app uses mongodb atlas to store objects
 
 Jwt token is used for authentication of users and authorisation of admin.
+
 Some features was added gradually, such as Remember me using jwt expiry, reminder mail using chrontab scheduler
 
